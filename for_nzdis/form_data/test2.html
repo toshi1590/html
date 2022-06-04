@@ -1,0 +1,52 @@
+<form id="form1">
+  <input type="text" name="name" value="">
+  <input type="text" name="age" value="">
+  <button type="button" name="button" id="form1_btn">send</button>
+</form>
+
+<form id="form2">
+  <input type="text" name="name" value="">
+  <input type="text" name="age" value="">
+  <button type="button" name="button" id="form2_btn">send</button>
+</form>
+
+<div id="result"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  const form1 = document.getElementById('form1');
+  const form1_btn = document.getElementById('form1_btn');
+  const form2 = document.getElementById('form2');
+  const form2_btn = document.getElementById('form2_btn');
+
+  form1_btn.onclick = function () {
+    const form1_data = new FormData(form1);
+
+    let count = 0;
+
+    form1_data.forEach(function(value){
+      if (value == '') {
+        count++;
+      }
+    });
+
+    if (count !== 0) {
+      alert('Please fill in ' + count + ' empty field(s) in scraping form.');
+    }
+  }
+
+  form2_btn.onclick = function () {
+    const form2_data = new FormData(form2);
+
+    let count = 0;
+
+    form2_data.forEach(function(value){
+      if (value == '') {
+        count++;
+      }
+    });
+
+    if (count !== 0) {
+      alert('Please fill in ' + count + ' empty field(s) in chart form.');
+    }
+  }
+</script>

@@ -1,0 +1,46 @@
+<form id="form">
+  <input type="text" name="name" value="">
+  <input type="text" name="sex" value="">
+
+  <input type="text" name="section[]" value="">
+  <input type="text" name="section[]" value="">
+
+  <input type="text" name="section[1][]" value="">
+  <input type="text" name="section[1][]" value="">
+  <input type="text" name="section[1][]" value="">
+
+  <button type="button" name="button" id="send_btn">send</button>
+</form>
+<div id="result"></div>
+
+<script type="text/javascript">
+  const send_btn = document.getElementById('send_btn');
+
+  send_btn.onclick = function () {
+    var inputs = document.getElementsByTagName('input'); // this is inside because number of input tags chnages
+
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].value == '') {
+        alert('all inputs need to be filled in.'); // or specify the empty input
+        break;
+      } else {
+        if (i == inputs.length - 1) {
+          const form = document.getElementById('form');
+          const form_data = new FormData(form);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'accept.php');
+          xhr.send(form_data);
+
+          xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+              result.innerHTML = xhr.responseText;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+</script>
